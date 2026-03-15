@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch('https://gcp-backend-api-b6wrw6tzdq-el.a.run.app/api/comments')
@@ -19,12 +19,22 @@ function App() {
         <p>This is a simple React application that fetches data from a backend API deployed on Google Cloud Platform.</p>
         <h3>Data from Backend API:</h3>
         <div className='table'>
-        {data.map((item) => (
-          <div key={item._id}>
-            <p><strong>Name:</strong> {item.name}</p>
-            <p><strong>Comment:</strong> {item.text}</p>
-          </div>
-        ))}
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Text</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item._id}>
+                  <td>{item.name}</td>
+                  <td>{item.text}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     </>
